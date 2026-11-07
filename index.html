@@ -140,6 +140,44 @@
     @keyframes beat { 0%,100% { transform: scale(1); } 50% { transform: scale(1.18); } }
 
 
+
+    /* Cutouts */
+    .cutout-wrap {
+      position: relative; width: min(340px, 80vw); margin: 0 auto;
+      display: flex; align-items: flex-end; justify-content: center;
+    }
+    .cutout-wrap::before {
+      content: ""; position: absolute; left: 50%; top: 4%;
+      width: 108%; aspect-ratio: 1; transform: translateX(-50%);
+      border-radius: 50%;
+      background: radial-gradient(circle closest-side, rgba(243,217,139,.95) 0%, rgba(212,166,74,.45) 60%, rgba(212,166,74,0) 100%);
+      z-index: 0;
+    }
+    .cutout-wrap::after {
+      content: ""; position: absolute; left: 50%; top: 9%;
+      width: 88%; aspect-ratio: 1; transform: translateX(-50%);
+      border-radius: 50%; border: 2px solid var(--gold); outline: 1px dashed rgba(107,15,26,.35); outline-offset: 8px;
+      z-index: 0;
+    }
+    .cutout-wrap img {
+      position: relative; z-index: 1; width: 100%; height: auto; display: block;
+      -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
+      mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
+    }
+    .groom { text-align: right; }
+    .bride { text-align: left; }
+    .standing { position: relative; width: 200px; margin: 0 auto 1.5rem; }
+    .standing::after {
+      content: ""; position: absolute; left: 10%; right: 10%; bottom: -6px; height: 18px;
+      background: radial-gradient(ellipse, rgba(107,15,26,.3), transparent 70%);
+    }
+    .standing img { width: 100%; height: auto; display: block; position: relative; z-index: 1; }
+    @media (max-width: 640px) {
+      .cutout-wrap { order: -1; }
+      .groom, .bride { text-align: center; }
+      .standing { width: 160px; }
+    }
+
     /* Gallery */
     .gallery-section { background: linear-gradient(180deg, var(--cream), #f8ead2); }
     .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin: 3rem auto 0; max-width: 720px; }
@@ -261,14 +299,14 @@
       <h2>The Couple</h2>
       <p class="lead">Two souls, two families, one beautiful journey. With the blessings of our elders, we begin a new chapter of our lives and would love for you to be part of it.</p>
       <div class="couple">
-        <div class="person">
-          <div class="avatar">O</div>
+        <div class="person groom">
           <h3>Omkar Dhamdhere</h3>
           <p>The Groom</p>
         </div>
-        <div class="heart" aria-hidden="true">❤</div>
-        <div class="person">
-          <div class="avatar">B</div>
+        <div class="cutout-wrap">
+          <img src="images/cutout-portrait.webp" alt="Omkar and Bhagyashri" width="659" height="911" />
+        </div>
+        <div class="person bride">
           <h3>Bhagyashri Nagawade</h3>
           <p>The Bride</p>
         </div>
@@ -344,6 +382,9 @@
   <!-- BLESSINGS -->
   <section class="blessing">
     <div class="container reveal">
+      <div class="standing">
+        <img src="images/cutout-standing.webp" alt="Omkar and Bhagyashri standing together" width="455" height="902" loading="lazy" />
+      </div>
       <p class="marathi">आपली उपस्थिती हेच आमचे आशीर्वाद</p>
       <p class="lead">Your presence is the greatest blessing we could ask for.<br />Kindly join us and shower the couple with your love.</p>
       <div class="divider"></div>

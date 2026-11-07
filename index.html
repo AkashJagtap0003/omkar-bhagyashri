@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Omkar &amp; Bhagyashri · Wedding Invitation · 13 December 2026</title>
-  <meta name="description" content="You are cordially invited to the wedding of Omkar Dhamdhere and Bhagyashri Nagawade on 13 December 2026." />
+  <meta name="description" content="You are cordially invited to the wedding of Omkar Dhamdhere and Bhagyashri Nagawade on 13 December 2026 at 5:45 PM." />
   <meta property="og:title" content="Omkar weds Bhagyashri · 13 December 2026" />
   <meta property="og:description" content="Join us to celebrate the wedding of Omkar Dhamdhere & Bhagyashri Nagawade." />
   <meta property="og:type" content="website" />
@@ -106,6 +106,7 @@
       transform: translate(-50%, -52%); color: var(--gold); font-size: 1.1rem;
     }
     .hero-date { font-size: clamp(1.3rem, 4vw, 1.8rem); letter-spacing: .15em; }
+    .hero-time { margin-top: .4rem; color: var(--gold-light); letter-spacing: .3em; text-transform: uppercase; font-size: clamp(.95rem, 2.6vw, 1.15rem); }
     .scroll-hint {
       margin-top: 2.5rem; color: var(--gold-light); text-decoration: none;
       font-size: .9rem; letter-spacing: .25em; text-transform: uppercase;
@@ -324,6 +325,7 @@
       <div class="divider"></div>
       <p class="invite-line" style="margin-bottom:.6rem">request the pleasure of your company at their wedding</p>
       <p class="hero-date">Sunday · 13 December 2026</p>
+      <p class="hero-time">Evening · 5:45 PM</p>
       </div>
       <div class="hero-couple">
         <img src="images/cutout-traditional.webp" alt="Omkar and Bhagyashri in traditional wedding attire" width="530" height="1191" />
@@ -400,7 +402,7 @@
         <div class="card">
           <div class="icon">📅</div>
           <h3>Date</h3>
-          <p>Sunday<br /><strong>13 December 2026</strong></p>
+          <p>Sunday<br /><strong>13 December 2026</strong><br />at <strong>5:45 PM</strong> (evening)</p>
         </div>
         <div class="card">
           <div class="icon">💍</div>
@@ -436,12 +438,12 @@
 
   <footer>
     <p class="names-small">Omkar &amp; Bhagyashri</p>
-    <p>13 · 12 · 2026</p>
+    <p>13 · 12 · 2026 · 5:45 PM</p>
   </footer>
 
   <script>
-    // Wedding date (Indian Standard Time, midnight start of the day)
-    const weddingDate = new Date("2026-12-13T00:00:00+05:30");
+    // Wedding date & time (Indian Standard Time)
+    const weddingDate = new Date("2026-12-13T17:45:00+05:30");
 
     // Countdown
     const $ = (id) => document.getElementById(id);
@@ -461,11 +463,11 @@
     tick();
     setInterval(tick, 1000);
 
-    // Google Calendar link (all-day event)
+    // Google Calendar link (5:45 PM IST; end time is an estimate)
     const gcal = new URL("https://calendar.google.com/calendar/render");
     gcal.searchParams.set("action", "TEMPLATE");
     gcal.searchParams.set("text", "Wedding of Omkar & Bhagyashri");
-    gcal.searchParams.set("dates", "20261213/20261214");
+    gcal.searchParams.set("dates", "20261213T121500Z/20261213T161500Z");
     gcal.searchParams.set("details", "Wedding of Omkar Dhamdhere & Bhagyashri Nagawade.\nInvitation: " + location.href);
     gcal.searchParams.set("location", "https://maps.app.goo.gl/95wUEAXJwMzZVgc3A");
     $("gcal").href = gcal.toString();
@@ -474,7 +476,7 @@
     $("share").addEventListener("click", async () => {
       const data = {
         title: "Omkar weds Bhagyashri",
-        text: "You're invited to the wedding of Omkar & Bhagyashri on 13 December 2026!",
+        text: "You're invited to the wedding of Omkar & Bhagyashri on 13 December 2026 at 5:45 PM!",
         url: location.href,
       };
       if (navigator.share) {

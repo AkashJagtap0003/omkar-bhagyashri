@@ -139,6 +139,32 @@
     .heart { font-size: 2.5rem; color: var(--maroon); animation: beat 1.4s ease-in-out infinite; }
     @keyframes beat { 0%,100% { transform: scale(1); } 50% { transform: scale(1.18); } }
 
+
+    /* Gallery */
+    .gallery-section { background: linear-gradient(180deg, var(--cream), #f8ead2); }
+    .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin: 3rem auto 0; max-width: 720px; }
+    .photo {
+      background: #fff; padding: 12px 12px 18px; border-radius: 6px;
+      box-shadow: 0 12px 34px rgba(107,15,26,.18);
+      border: 1px solid rgba(212,166,74,.5);
+      cursor: zoom-in; transition: transform .35s ease;
+    }
+    .photo:nth-child(1) { transform: rotate(-2deg); }
+    .photo:nth-child(2) { transform: rotate(2deg); margin-top: 2.5rem; }
+    .photo:hover { transform: rotate(0) scale(1.03); }
+    .photo img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; display: block; border-radius: 3px; }
+    .photo figcaption { font-family: "Great Vibes", cursive; font-size: 1.6rem; color: var(--maroon); margin-top: .5rem; }
+    .lightbox {
+      position: fixed; inset: 0; z-index: 50; display: none;
+      background: rgba(30,4,8,.92); align-items: center; justify-content: center; padding: 1rem; cursor: zoom-out;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 100%; max-height: 92vh; border: 4px solid var(--gold); border-radius: 6px; }
+    @media (max-width: 640px) {
+      .gallery { grid-template-columns: 1fr; gap: 1.5rem; }
+      .photo:nth-child(2) { margin-top: 0; }
+    }
+
     /* Countdown */
     .countdown-section { background: linear-gradient(135deg, var(--maroon), var(--maroon-dark)); color: var(--cream); }
     .countdown-section h2 { color: var(--gold-light); }
@@ -250,6 +276,26 @@
     </div>
   </section>
 
+  <!-- GALLERY -->
+  <section class="gallery-section" id="gallery">
+    <div class="container reveal">
+      <h2>Our Moments</h2>
+      <p class="lead">A few glimpses of us, before forever begins</p>
+      <div class="gallery">
+        <figure class="photo">
+          <img src="images/couple-1.jpg" alt="Omkar and Bhagyashri smiling together" loading="lazy" width="896" height="1195" />
+          <figcaption>Together</figcaption>
+        </figure>
+        <figure class="photo">
+          <img src="images/couple-2.jpg" alt="Omkar and Bhagyashri in front of a glowing golden emblem" loading="lazy" width="896" height="1195" />
+          <figcaption>Forever</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-label="Photo preview"><img alt="" /></div>
+
   <!-- COUNTDOWN -->
   <section class="countdown-section">
     <div class="container reveal">
@@ -360,6 +406,14 @@
       entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); } });
     }, { threshold: 0.15 });
     document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+    // Lightbox
+    const lb = $("lightbox"), lbImg = lb.querySelector("img");
+    document.querySelectorAll(".photo img").forEach((img) => img.addEventListener("click", () => {
+      lbImg.src = img.src; lbImg.alt = img.alt; lb.classList.add("open");
+    }));
+    lb.addEventListener("click", () => lb.classList.remove("open"));
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") lb.classList.remove("open"); });
 
     // Falling petals
     const petals = $("petals");

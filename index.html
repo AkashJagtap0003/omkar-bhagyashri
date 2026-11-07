@@ -141,6 +141,38 @@
 
 
 
+
+    /* Hero couple + bouquet cutouts */
+    .hero-grid { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; width: 100%; max-width: 1100px; }
+    .hero-text { display: flex; flex-direction: column; align-items: center; }
+    .hero-couple { position: relative; width: min(260px, 64vw); }
+    .hero-couple::before {
+      content: ""; position: absolute; left: 50%; top: 2%; width: 150%; aspect-ratio: 1;
+      transform: translateX(-50%); border-radius: 50%;
+      background: radial-gradient(circle closest-side, rgba(243,217,139,.55), rgba(212,166,74,.18) 60%, rgba(212,166,74,0));
+    }
+    .hero-couple::after {
+      content: ""; position: absolute; left: 5%; right: 5%; bottom: -10px; height: 24px;
+      background: radial-gradient(ellipse closest-side, rgba(0,0,0,.45), transparent);
+    }
+    .hero-couple img { position: relative; z-index: 1; width: 100%; height: auto; display: block; }
+    @media (min-width: 900px) {
+      .hero-grid { flex-direction: row; justify-content: center; gap: 4rem; }
+      .hero-text { flex: 1 1 auto; max-width: 560px; }
+      .hero-couple { width: 290px; flex: 0 0 auto; }
+    }
+    .bouquet { position: relative; width: min(330px, 78vw); margin: 2.5rem auto 0; }
+    .bouquet::before {
+      content: ""; position: absolute; left: 50%; top: 0; width: 120%; aspect-ratio: 1;
+      transform: translateX(-50%); border-radius: 50%;
+      background: radial-gradient(circle closest-side, rgba(243,217,139,.7), rgba(243,217,139,0));
+    }
+    .bouquet img {
+      position: relative; z-index: 1; width: 100%; height: auto; display: block;
+      -webkit-mask-image: linear-gradient(to bottom, #000 85%, transparent 100%);
+      mask-image: linear-gradient(to bottom, #000 85%, transparent 100%);
+    }
+
     /* Cutouts */
     .cutout-wrap {
       position: relative; width: min(340px, 80vw); margin: 0 auto;
@@ -279,17 +311,24 @@
 
   <!-- HERO -->
   <header class="hero">
-    <div class="ganesh" aria-hidden="true">🕉️</div>
-    <p class="shloka">॥ श्री गणेशाय नमः ॥</p>
-    <p class="invite-line">Together with their families</p>
-    <h1 class="names">
-      Omkar
-      <span class="amp">&amp;</span>
-      Bhagyashri
-    </h1>
-    <div class="divider"></div>
-    <p class="invite-line" style="margin-bottom:.6rem">request the pleasure of your company at their wedding</p>
-    <p class="hero-date">Sunday · 13 December 2026</p>
+    <div class="hero-grid">
+      <div class="hero-text">
+      <div class="ganesh" aria-hidden="true">🕉️</div>
+      <p class="shloka">॥ श्री गणेशाय नमः ॥</p>
+      <p class="invite-line">Together with their families</p>
+      <h1 class="names">
+        Omkar
+        <span class="amp">&amp;</span>
+        Bhagyashri
+      </h1>
+      <div class="divider"></div>
+      <p class="invite-line" style="margin-bottom:.6rem">request the pleasure of your company at their wedding</p>
+      <p class="hero-date">Sunday · 13 December 2026</p>
+      </div>
+      <div class="hero-couple">
+        <img src="images/cutout-traditional.webp" alt="Omkar and Bhagyashri in traditional wedding attire" width="530" height="1191" />
+      </div>
+    </div>
     <a href="#couple" class="scroll-hint">Scroll ↓</a>
   </header>
 
@@ -354,6 +393,9 @@
     <div class="container reveal">
       <h2>Wedding Details</h2>
       <p class="lead">We look forward to celebrating with you</p>
+      <div class="bouquet">
+        <img src="images/cutout-bouquet.webp" alt="Omkar presenting a bouquet of roses to Bhagyashri" width="757" height="1048" loading="lazy" />
+      </div>
       <div class="cards">
         <div class="card">
           <div class="icon">📅</div>
